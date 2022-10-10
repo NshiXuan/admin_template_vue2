@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
-    <el-menu default-active="/home" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-      background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router>
+    <el-menu :default-active="currentPath" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff"
+      active-text-color="#ffd04b" router>
       <el-menu-item index="/home">
         <span slot="title">首页</span>
       </el-menu-item>
@@ -19,7 +19,21 @@
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      currentPath: '/home'
+    }
+  },
+  methods: {
 
+  },
+  watch: {
+    $route(to, from) {
+      this.currentPath = to.path
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>
